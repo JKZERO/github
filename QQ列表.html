@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>qqdada</title>
+    <style type="text/css" media="screen">
+        #list{
+            margin: 0 auto;
+            border: 2px solid #24b;
+            width: 200px;
+        }
+        ul{
+            list-style:none;
+            padding: 0;
+        }
+        #list ul li{
+            text-indent: 20px;
+        }
+        h2{
+    	background-color: pink;
+    	margin: 0;
+    	text-indent: 16px;
+    	background-image: url(../img/ico1.gif);
+    	background-repeat: no-repeat;
+    	background-position: 0px center;
+        }
+        .sss{
+        background-image: url(../img/ico2.gif);
+        background-repeat: no-repeat;
+        background-position: 0px center;
+        background-color: yellow;
+        }
+        #list ul{
+            display: none;
+        }
+        .onli{
+            background-color: #ED99118A;
+        }
+    </style>
+    <script>
+    window.onload=function(){
+        var oList = document.getElementById("list");
+        var oUl   = oList.getElementsByTagName('ul');
+        var oLi   =null;
+        var oH    = oList.getElementsByTagName('h2');
+        var arrli =[];
+        var num   =0;
+        var numli =0;
+        for(var i=0;i<oUl.length;i++){
+            oLi=oUl[i].getElementsByTagName('li');
+            for(var j=0;j<oLi.length;j++){
+                arrli.push(oLi[j]);
+            }
+        }
+        for(var i=0;i<oH.length;i++){
+            oH[i].index=i;
+            oH[i].onclick=function(){
+            if(oH[this.index].className==''){
+            oH[num].className='';
+            oUl[num].style.display='none';
+            num=this.index;
+            this.className='sss';
+            oUl[this.index].style.display='block';
+            }
+            else{
+            this.className="";
+            oUl[this.index].style.display='none';
+            }
+            }
+        }
+        for(var i=0;i<arrli.length;i++){
+            arrli[i].index=i;
+            arrli[i].onclick=function(){
+                if(this.className==''){
+                    arrli[numli].className='';
+                    numli=this.index;
+                    this.className='onli';
+                }else{
+                    this.className='';
+                }
+            }
+        }
+}
+    </script>
+</head>
+<body>
+    <ul id="list">
+        <li>
+            <h2>我的好友</h2>
+            <ul>
+                <li>郭苏峰</li>
+                <li>张涛</li>
+                <li>唐英杰666</li>
+            </ul>
+        </li>
+        <li>
+            <h2>室友</h2>
+            <ul>
+                <li>朱哥</li>
+                <li>罗哥</li>
+                <li>小俊杰</li>
+            </ul>
+        </li>
+        <li>
+            <h2>黑名单</h2>
+            <ul>
+                <li>蜘蛛侠</li>
+                <li>柯蓝</li>
+                <li>妲己</li>
+            </ul>
+        </li>
+    </ul>
+</body>
+</html>

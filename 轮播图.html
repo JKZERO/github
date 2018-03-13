@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css">
+        #div1{
+            width: 400px;
+            height: 400px;
+            border: 5px solid #999;
+            background-color: #fff;
+            margin: 20px auto 0;
+            position: relative;
+        }
+        body{
+            text-align:center;
+        }
+        img{
+            width: 400px;
+            height: 400px;
+        }
+        span,
+        p{
+            width: 400px;
+            background: #333;
+            filter:alpha(opacity:80);
+            opacity:0.8;
+            position: absolute;
+            text-align: center;
+            color: #fff;
+        }
+        span{
+            top: 0;
+        }
+        p{
+            bottom: 0;
+            margin: 0;
+        }
+        a{
+            text-decoration: none;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            border: 2px solid #333;
+            background-color: #999;
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            margin-top: -20px;
+            filter:alpha(opacity:30);
+            opacity:0.3;
+        }
+        a:hover{
+            filter:alpha(opacity:80);
+            opacity:0.8;
+        }
+        #prev{
+
+            left:20px;
+
+        }
+        #next{
+            right: 20px;
+        }
+
+    </style>
+    <script>
+    window.onload=function(){
+        var oXx = document.getElementById('xx');
+        var oXh = document.getElementById('xh');
+        var oImg = document.getElementById('img1');
+        var oPrev = document.getElementById('prev');
+        var oNext = document.getElementById('next');
+        var oSpan = document.getElementById('span1');
+        var oP = document.getElementById('p1');
+        var arrImg = ['../img/1.jpg','../img/2.jpg','../img/3.jpg','../img/4.jpg'];
+        var arrP = ['妹子','汉子','MM','女神'];
+        var num = 0;
+        var Onoff=true;
+        function gx(){
+            oImg.src= arrImg[num];
+            oSpan.innerHTML=num+1+"/"+arrImg.length;
+            oP.innerHTML = arrP[num];
+        }
+        gx();
+        oXx.onclick=function(){
+            Onoff=true;
+        }
+        oXh.onclick=function(){
+            Onoff=false;
+        }
+        oPrev.onclick=function(){
+            num--;
+            if(Onoff==true){
+                if(num<0){
+                    num=0;
+                }
+            }else{
+                if(num<0){
+                    num=arrImg.length-1;
+                }
+            }
+            gx();
+        }
+        oNext.onclick=function(){
+            num++;
+            if(Onoff==true){
+                if(num>arrImg.length-1){
+                    num=arrImg.length-1;
+                }
+            }else{
+                if(num>arrImg.length-1){
+                    num=0;
+                }
+            }
+            gx();
+        }
+
+    }
+    </script>
+</head>
+<body>
+    <div class="b"><input type="button" id="xx" value="顺序切换"> <input type="button" id="xh" value="循环切换"></div>
+    <div id="div1">
+        <span id="span1">正在计算。。。</span>
+        <img src="" id="img1"/>
+        <p id="p1">正在计算。。。</p>
+        <a href="javascript:;" id="prev"> < </a>
+        <a href="javascript:;" id="next"> > </a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul{
+			list-style: none;
+			margin: 50px auto 0;
+			width: 400px;
+			border: 2px solid #B14D55FF;
+		}
+		li{
+			padding:5px 10px;
+			background-color: #FFF;
+		}
+		.tou{
+			background-color: #34CA79FF;
+			color: #fff;
+		}
+		em{
+			cursor: pointer;
+		}
+		span{
+			display: inline-block;
+			color: #34CA79FF;
+			cursor: pointer;
+			display: none;
+		}
+		span:hover{
+			background-color: #34CA79FF;
+			color: #fff;
+		}
+		h4{
+			display: inline;
+		}
+		input{
+			display: none;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var oUl = document.getElementById("list");
+			var aLi = oUl.getElementsByTagName('li');
+			var aEm = oUl.getElementsByTagName('em');
+			var aSpan = null;
+		//给修改添加点击事件
+			for(var i=0;i<aEm.length;i++){
+				aEm[i].index=i;
+				aEm[i].onclick=function(){
+				chu(this.index+1);//因为ul里多了个li
+			    };
+			}
+			
+		   //给每个保存，取消添加点击事件，这个循环可以保证以后加几个li都可以用！！
+			for(var i=1;i<aLi.length;i++){
+				aSpan=aLi[i].getElementsByTagName('span');
+				for(var j=0;j<aSpan.length;j++){
+					aSpan[j].index=i;
+					aSpan[j].onclick=function(){
+					gai(this.index);
+					};//i第一次span读取第2个li的span，进入j循环，给2个span加事件；
+				}//i第二次span读取第3个li的span，进入j循环，给2个span加事件；
+			}
+
+			//改名字
+			function gai(index){
+				aLi[index].getElementsByTagName('h4')[0].innerHTML=aLi[index].getElementsByTagName('input')[0].value;//把输入框里的名字h4
+				aLi[index].getElementsByTagName('h4')[0].style.display='inline-block';
+				aLi[index].getElementsByTagName('em')[0].style.display='inline-block';
+				aLi[index].getElementsByTagName('span')[0].style.display='none';
+				aLi[index].getElementsByTagName('span')[1].style.display='none';
+				aLi[index].getElementsByTagName('input')[0].style.display='none';
+			}
+			//出现修改框
+			function chu(index){
+				aLi[index].getElementsByTagName('h4')[0].style.display='none';
+				aLi[index].getElementsByTagName('em')[0].style.display='none';
+				aLi[index].getElementsByTagName('span')[0].style.display='inline-block';
+				aLi[index].getElementsByTagName('span')[1].style.display='inline-block';
+				aLi[index].getElementsByTagName('input')[0].style.display='inline-block';
+				aLi[index].getElementsByTagName('input')[0].value=aLi[index].getElementsByTagName('h4')[0].innerHTML;//让输入框里保留原来的名字
+			};
+		}
+	</script>
+</head>
+<body>
+	<ul id="list">
+		<li class="tou">分类名称</li>
+		<li><h4>我最努力</h4> <em>修改</em> <input type="text"/> <span>保存</span> <span>取消</span></li>
+		<li><h4>是的最努力</h4> <em>修改</em> <input type="text"/> <span>保存</span> <span>取消</span></li>
+	</ul>
+</body>
+</html>

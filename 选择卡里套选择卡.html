@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	.hez{
+		margin: 50px auto 0;
+		padding: 4px;
+		width: 800px;
+		height: 600px;
+		background-color: #D8D8D8FF;
+		border: 1px solid #AFAFAFFF;
+	}
+	ul{
+		list-style: none;
+	}
+	#list{
+		display: inline-block;
+		float: left;
+		background-color: #FF9C00FF;
+	}
+	#list li{
+		width: 199px;
+		height: 147px;
+		border: 2px solid #AFAFAFFF;
+		line-height: 147px;
+		text-align: center;
+	}
+	img{
+		float: right;
+		width: 591px;
+		height: 599px;
+	}
+	.list1,
+	.list2,
+	.list3,
+	.list4{
+		float: right;
+		width: 591px;
+		height: 599px;
+		position: relative;
+	}
+	.list1 ul li,
+	.list2 ul li,
+	.list3 ul li,
+	.list4 ul li{
+		float: left;
+		width: 194px;
+		line-height: 20px;
+		text-align: center;
+		border: 1px solid #999;
+	}
+	.list2 ul li{
+		width: 145px;
+	}
+	.list1 ul,
+	.list2 ul,
+	.list3 ul,
+	.list4 ul{
+		padding-left: 5px;
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: 591px;
+		height: 20px;
+		background-color: #FFFFFFDB;
+	}
+	.onli{
+		background-color: #E717A5FF;
+		color:  #fff;
+	}
+	.list2,
+	.list3,
+	.list4{
+		display: none;
+	}
+</style>
+<script>
+	window.onload=function(){
+		var ahez = document.getElementsByTagName('div')[0];
+		var olist = ahez.getElementsByTagName('ul')[0].getElementsByTagName('li');
+		var oDiv = ahez.getElementsByTagName('div');
+		var oli=new Array();
+		var oImg=['../img/1.png','../img/2.png','../img/3.png','../img/4.png'];
+		for(var i=0;i<olist.length;i++){
+			olist[i].index=i;
+			olist[i].onclick=function(){
+				lito(olist);
+				this.className='onli';
+				divto();
+				oDiv[this.index].style.display="block";
+			}
+		}
+		for(var i=0;i<oDiv.length;i++){
+			oli[i]=oDiv[i].getElementsByTagName('li');
+			for(var j=0;j<oli[i].length;j++){
+				oli[i][j].index=i;
+				oli[i][j].indexs=j;
+				oli[i][j].onclick=function(){
+					// body...
+					oDiv[this.index].getElementsByTagName('img')[0].src=oImg[this.indexs];
+					lito(oli[this.index]);
+					this.className='onli';
+				}
+			}
+		}
+		function lito( listname ) {
+			// body...
+			for(var i=0;i<listname.length;i++){
+				listname[i].className='';
+			}
+		}
+		function divto(){
+			// body...
+			for(var i=0;i<oDiv.length;i++){
+				oDiv[i].style.display='none';
+			}
+		}
+	}
+</script>
+<body>
+	<div class="hez">
+		<ul id="list">
+			<li class="onli">内容1</li>
+			<li>内容2</li>
+			<li>内容3</li>
+			<li>内容4</li>
+		</ul>
+		<div class="list1">
+		<img src="../img/1.png">
+		<ul>
+			<li class="onli">图片1</li>
+			<li>图片2</li>
+			<li>图片3</li>
+		</ul>
+		</div>
+		<div class="list2">
+		<img src="../img/1.png">
+		<ul>
+			<li class="onli">图片1</li>
+			<li>图片2</li>
+			<li>图片3</li>
+			<li>图片3</li>
+		</ul>
+		</div>
+		<div class="list3">
+		<img src="../img/1.png">
+		<ul>
+			<li class="onli">图片1</li>
+			<li>图片2</li>
+			<li>图片3</li>
+		</ul>
+		</div>
+		<div class="list4">
+		<img src="../img/1.png">
+		<ul>
+			<li class="onli">图片1</li>
+			<li>图片2</li>
+			<li>图片3</li>
+		</ul>
+		</div>
+	</div>
+</body>
+</html>

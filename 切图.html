@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>切图特效</title>
+    <style type="text/css" media="screen">
+    	body{
+    		text-align: center;
+    	}
+        .tu{
+        	width: 924px;
+        	height: 502px;
+        	margin: 20px auto 0;
+         }
+         .rd,
+         .ld{
+         	width: 450px;
+         	height: 500px;
+         	background: #fff url(../img/loader_ico.gif) center  no-repeat;
+         	position: relative;
+         	border: 1px solid ;
+         }
+         .rd{
+         	float: right;
+         }
+         .ld{
+         	float: left;
+         	margin-right: 20px;
+         }
+         p,
+         span{
+         	height: 30px;
+         	width: 450px;
+         	text-align: center;
+         	line-height: 30px;
+         	position: absolute;
+         	margin: 0;
+         	background-color: #9C35C95F;
+         	color: pink;
+         }
+         p{
+         	top:0;
+         }
+         span{
+         	bottom: 0;
+         	display: block;
+         }
+         img{
+         	width: 450px;
+         	height: 500px;
+         }
+    </style>     
+    <script type="text/javascript">
+    	window.onload=function(){
+    	var oImg = document.getElementsByTagName('img');
+    	var oP = document.getElementsByTagName('p');
+    	var oSpan = document.getElementsByTagName('span');
+    	var oBut = document.getElementsByTagName('input');
+    	var spans=['第一张','第二张','第三张','第四张'];
+    	var oSrc=['../img/1.png','../img/2.png','../img/3.png','../img/4.png'];
+    	oImg[0].index=0;
+    	oImg[1].index=0;
+    	//图片点击
+    	for(var i=0;i<oImg.length;i++){
+    		oImg[i].ico=i;
+    		oImg[i].onclick=function jia(){
+    			this.index++;
+    			jc(this.ico);
+    			csh(this.ico);
+    		   // oP[this.ico].innerHTML=this.index+1+'/'+oSrc.length;
+    		   // oImg[this.ico].src=oSrc[this.index];
+    		   // oSpan[this.ico].innerHTML=spans[this.index];
+    		   
+    		 //   if(this.index==3){
+    			// this.index=-1;
+    		 //   }
+    	    }
+    	}
+    	//按钮点击
+    	for(var i=0;i<oBut.length;i++){
+    		oBut[i].index=i;
+    		oBut[i].onclick=function(){
+    			if(this.index==0){
+    				oImg[0].index--;
+    				oImg[1].index--;
+    				jc(0);
+    		        jc(1);
+    				csh(0);
+    				csh(1);
+    			}else{
+    				oImg[0].index++;
+    				oImg[1].index++;
+    				jc(0);
+    		        jc(1);
+    				csh(0);
+    				csh(1);    	
+    			}
+    		}
+    	}
+    	//切图校验
+    	function jc(a){
+    		if(oImg[a].index>3){
+    			oImg[a].index=0;
+    		}else if(oImg[a].index<0){
+    			oImg[a].index=3;
+    		}
+    	}
+    	//初始化
+    	function csh(a){
+    			oP[a].innerHTML=oImg[a].index+1+'/'+oSrc.length;
+    		    oImg[a].src=oSrc[oImg[a].index];
+    		    oSpan[a].innerHTML=spans[oImg[a].index];
+    	}
+    	csh(0);
+    	csh(1);
+    }
+    </script>
+</head>
+<body>
+	<input type="button" value="上一组" />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="button" value="下一组" />
+	<div class="tu">
+    <div class="ld">
+    	<p>计算中。。。</p>
+    	<img src="" alt="">
+    	<span>加载中。。。</span>
+    </div>
+    <div class="rd">
+    	<p>计算中。。。</p>
+    	<img src="" alt="">
+        <span>加载中。。。</span>
+    </div>
+    </div>
+</body>
+</html>
